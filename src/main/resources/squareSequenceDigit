@@ -1,0 +1,26 @@
+/**
+ * Сложная
+ *
+ * Найти n-ю цифру последовательности из квадратов целых чисел:
+ * 149162536496481100121144...
+ * Например, 2-я цифра равна 4, 7-я 5, 12-я 6.
+ *
+ * Использовать операции со строками в этой задаче запрещается.
+ */
+fun squareSequenceDigit(n: Int): Int {
+    var numerator = 0
+    var sqrOfNumber = 0
+    var number = 1
+
+    while (numerator < n) {  // Простой комментарий
+        sqrOfNumber = sqr(number)
+        numerator += digitNumber(sqrOfNumber)
+        number++
+    }
+
+    while (numerator > n) {
+        numerator--
+        sqrOfNumber /= 10
+    }
+    return sqrOfNumber % 10
+}

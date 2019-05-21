@@ -1,0 +1,156 @@
+@file:Suppress("UNUSED_PARAMETER")
+package lesson1.task1
+
+import discriminant
+import quadraticRootProduct
+import sqr
+import kotlin.math.*
+
+/**
+ * ������
+ *
+ * ���������� �������� ������ �����
+ */
+ @Example
+fun sqr(x: Int) = x * x
+
+/**
+ * ������
+ *
+ * ���������� �������� ������������� �����
+ */
+ @Example
+fun sqr(x: Double) = x * x
+
+/**
+ * ������
+ *
+ * ���������� ������������� ����������� ���������
+ */
+ @Example
+fun discriminant(a: Double, b: Double, c: Double) = sqr(b) - 4 * a * c
+
+/**
+ * ������
+ *
+ * ����� ������ �� ������ ����������� ���������
+ */
+ @Example
+fun quadraticEquationRoot(a: Double, b: Double, c: Double) =
+        (-b + sqrt(discriminant(a, b, c))) / (2 * a)
+
+/**
+ * ������
+ *
+ * ����� ������������ ������ ����������� ���������
+ */
+ @Example
+fun quadraticRootProduct(a: Double, b: Double, c: Double): Double {
+    val sd = sqrt(discriminant(a, b, c))
+    val x1 = (-b + sd) / (2 * a)
+    val x2 = (-b - sd) / (2 * a)
+    return x1 * x2 // ���������
+}
+
+/**
+ * ������ ������� �������
+ */
+ @Example
+fun main(args: Array<String>) {
+    val x1x2 = quadraticRootProduct(1.0, 13.0, 42.0)
+    println("Root product: $x1x2")
+}
+
+/**
+ * �����������
+ *
+ * ������������ ������ ����� � �����, ������� � ��������, ��������, 8:20:35.
+ * ���������� ����� � ��������, ��������� � ������ ����� (30035 � ������ ������).
+ */
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int {
+    val hoursToSeconds = hours * 3600
+    val minutesToSeconds = minutes * 60
+    return hoursToSeconds + minutesToSeconds + seconds
+}
+
+/**
+ * �����������
+ *
+ * ������������ ������ ����� ������� � �������, ������� � ������� (��������, 8 ������� 2 ������ 11 �������).
+ * ���������� ����� ���� �� ������� � ������ (� ������ ������ 18.98).
+ * 1 ������ = 3 ������ = 48 �������, 1 ������ = 4.445 ��.
+ */
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double {
+    val sToV = sagenes * 48
+    val aToV = arshins * 16
+    return (vershoks + sToV + aToV) * 0.04445
+}
+
+/**
+ * �����������
+ *
+ * ������������ ������ ���� � ��������, ������� � �������� (��������, 36 �������� 14 ����� 35 ������).
+ * ������� �������� ���� �� ���� � �������� (��������, 0.63256).
+ */
+fun angleInRadian(grad: Int, min: Int, sec: Int): Double {
+    val grToSec = grad * 3600
+    val minToSec = min * 60
+    return (sec + grToSec + minToSec) * PI / (3600 * 180)
+}
+
+/**
+ * �����������
+ *
+ * ����� ����� �������, ������������ ����� �� ��������� � ������������ (x1, y1) � (x2, y2).
+ * ��������, ���������� ����� (3, 0) � (0, 4) ����� 5
+ */
+fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double {
+    val x3 = x1 - x2
+    val y3 = y1 - y2
+    return (sqrt(sqr(x3) + sqr(y3)))
+}
+
+/**
+ * �������
+ *
+ * ������������ ������ ����� �����, ������� 100 (��������, 3801).
+ * ���������� ������ ����� ������ � ���� ����� (� ������ ������ 8).
+ */
+fun thirdDigit(number: Int): Int = number / 100 % 10
+
+/**
+ * �������
+ *
+ * ����� ����� �� ������� ����������� � h1 ����� m1 ����� (�������� � 9:25) �
+ * ������ �� ������� ���������� � h2 ����� m2 ����� ���� �� ��� (�������� � 13:01).
+ * ���������� ����� ������ � ���� � ������� (� ������ ������ 216).
+ */
+fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int {
+    val hoursToMinutes = (hoursArrive - hoursDepart) * 60
+    return hoursToMinutes + (minutesArrive - minutesDepart)
+}
+
+/**
+ * �������
+ *
+ * ������� ������� � ���� ����� � s ������ ��� p% ������� (�������� ����������� � ����� ����).
+ * ������� ����� ����� �� ����� ����� 3 ���� (� ������ ������� ���������)?
+ * ��������, 100 ������ ��� 10% ������� ����������� � 133.1 �����
+ */
+fun accountInThreeYears(initial: Int, percent: Int): Double {
+    val p = 1 + percent * 0.01
+    return initial * p * p * p
+}
+
+/**
+ * �������
+ *
+ * ������������ ������ ����� ����������� ����� (��������, 478).
+ * ���������� ������� �����, ���������� �� ��������� ������������� ���� � �������� ������� (��������, 874).
+ */
+fun numberRevert(number: Int): Int {
+    val a = number % 10
+    val b = (number / 10) % 10
+    val c = (number / 100) % 10
+    return (a * 100 + b * 10 + c)
+}
